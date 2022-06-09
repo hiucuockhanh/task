@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { faker } from "@faker-js/faker";
 
 const WIDTH = Dimensions.get('window').width;
 
@@ -25,10 +26,10 @@ const Lister: FunctionComponent<Props> = React.memo(
       products.push(
         {
           id: i,
-          name: 'Women Nupse Jacket',
-          image: 'https://cdn.pixabay.com/photo/2022/05/30/16/09/tatra-mountains-7231545__480.jpg',
-          brand: 'Northface',
-          price: i * 2,
+          name: faker.company.companyName(),
+          image: faker.image.imageUrl(190, 150, 'fish', true),
+          brand: faker.name.lastName(),
+          price: faker.random.numeric(3),
           isWishlist: false,
           isTrending: false,
           status: false,
@@ -44,10 +45,13 @@ const Lister: FunctionComponent<Props> = React.memo(
             style={styles.img}
             source={{ uri: item.image }}
           />
+          <Image
+            style={styles.heart}
+            source={require('../../assets/icon/red.png')}
+            // source={require('../../assets/icon/red.png')}
+          />
           <Text style={styles.brand}>{item.brand}</Text>
           <Text style={styles.txt}>{item.name}</Text>
-          {/*<Text style={styles.brand}>{item.star}</Text>*/}
-          {/*{stars}*/}
           <View style={styles.button}>
             <Text style={styles.price}>${item.price}</Text>
             <TouchableOpacity style={styles.touch}>
@@ -97,7 +101,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     backgroundColor: 'rgb(255, 255, 255)',
     borderWidth: 2,
-    height: 360,
+    height: 340,
     width: WIDTH * 0.5,
     borderStyle: 'solid',
     borderColor: 'rgb(249, 249, 249)',
@@ -110,6 +114,14 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch',
     height: 190,
     width: 150,
+  },
+  heart: {
+    position: 'absolute',
+    resizeMode: 'stretch',
+    height: 30,
+    width: 30,
+    bottom: 150,
+    right: 40,
   },
   brand: {
     marginTop: 15,

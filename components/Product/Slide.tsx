@@ -14,10 +14,11 @@ const WIDTH = Dimensions.get("window").width;
 const HEIGHT = Dimensions.get("window").height;
 
 const images = [
-  "https://cdn.pixabay.com/photo/2022/03/30/14/55/holiday-home-7101309__480.jpg",
-  "https://cdn.pixabay.com/photo/2022/04/07/15/13/farming-7117714__480.jpg",
-  "https://cdn.pixabay.com/photo/2020/12/23/03/14/men-5853759__480.jpg",
-  "https://cdn.pixabay.com/photo/2021/12/21/13/10/desert-6885229__480.jpg",
+  "https://cdn.pixabay.com/photo/2015/01/15/12/46/woman-600225__480.jpg",
+  "https://cdn.pixabay.com/photo/2017/10/19/18/26/woman-2868727__340.jpg",
+  "https://cdn.pixabay.com/photo/2018/01/29/17/01/woman-3116587__480.jpg",
+  "https://cdn.pixabay.com/photo/2016/01/14/06/09/woman-1139397__480.jpg",
+  "https://cdn.pixabay.com/photo/2016/10/16/13/44/young-woman-1745173__480.jpg",
 ];
 
 interface Props {
@@ -32,7 +33,7 @@ const Slide: FunctionComponent<Props> =({items}) => {
 
   const toggleHeart = () => {
     if(toggle === 'white') {
-      setToggle('rgb(253,74,74)');
+      setToggle('rgb(255,0,0)');
     } else {
       setToggle('white');
     }
@@ -60,7 +61,7 @@ const Slide: FunctionComponent<Props> =({items}) => {
           {items.map((e, index) => (
             <Image
               key={index}
-              resizeMode="stretch"
+              resizeMode='cover'
               style={styles.wrap}
               source={{ uri: e }}
             />
