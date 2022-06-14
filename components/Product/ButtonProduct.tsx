@@ -31,13 +31,13 @@ const ButtonProduct: FunctionComponent<Props> =
       <View style={styles.increAndDecre}>
         <TouchableOpacity onPress={decrement}>
           <View style={styles.decrement}>
-            <Text style={styles.cal}>{decre}</Text>
+            <Text style={styles.calLeft}>{decre}</Text>
           </View>
         </TouchableOpacity>
         <TextInput style={styles.display}>{counter}</TextInput>
         <TouchableOpacity onPress={increment}>
           <View style={styles.increment}>
-            <Text style={styles.cal}>{incre}</Text>
+            <Text style={styles.calRight}>{incre}</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -61,8 +61,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    height: 52,
-
+    height: 82,
+    backgroundColor: 'white',
   },
   increAndDecre: {
     width: WIDTH * 0.4,
@@ -71,10 +71,10 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
+    height: 55,
   },
   decrement: {
     flex: 1,
-    fontSize: 30,
     borderBottomLeftRadius: 30,
     borderTopLeftRadius: 30,
     backgroundColor: 'rgb(249, 249, 249)',
@@ -88,7 +88,13 @@ const styles = StyleSheet.create({
     width: 70,
     backgroundColor: 'rgb(249, 249, 249)',
   },
-  cal: {
+  calLeft: {
+    fontSize: 50,
+    color: '#b0acac',
+    textAlign: 'center',
+    bottom: 6,
+  },
+  calRight: {
     fontSize: 36,
     color: '#b0acac',
     textAlign: 'center',

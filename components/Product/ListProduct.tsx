@@ -27,7 +27,7 @@ const Lister: FunctionComponent<Props> = React.memo(
         {
           id: i,
           name: faker.company.companyName(),
-          image: faker.image.imageUrl(190, 150, 'fish', true),
+          image: faker.image.imageUrl(190, 150, 'clothing', true),
           brand: faker.name.lastName(),
           price: faker.random.numeric(3),
           isWishlist: false,
@@ -48,7 +48,6 @@ const Lister: FunctionComponent<Props> = React.memo(
           <Image
             style={styles.heart}
             source={require('../../assets/icon/red.png')}
-            // source={require('../../assets/icon/red.png')}
           />
           <Text style={styles.brand}>{item.brand}</Text>
           <Text style={styles.txt}>{item.name}</Text>
@@ -97,7 +96,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   products: {
-    // flex: 1,
     position: 'relative',
     backgroundColor: 'rgb(255, 255, 255)',
     borderWidth: 2,

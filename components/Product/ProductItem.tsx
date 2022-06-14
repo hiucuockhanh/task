@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
   textCenter: {
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'white',
   },
   productName: {
     fontSize: 17,
