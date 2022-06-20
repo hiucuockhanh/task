@@ -1,8 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { Dimensions, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useQuery } from 'react-query';
-import axios from 'axios';
-import colors from "../../constants/colors";
 import {getPostById} from "../../services/api";
 
 const WIDTH = Dimensions.get('window').width;

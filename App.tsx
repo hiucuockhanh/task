@@ -2,7 +2,15 @@ import React from 'react';
 import Main from "./components/Main";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      // refetchOnMount: 'always',
+      // retry: false,
+      // staleTime: 1000,
+    }
+  }
+});
 
 const App = () => {
   return (

@@ -1,8 +1,9 @@
 import React, { FunctionComponent, useState } from "react";
 import { Dimensions, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { useMutation, useQuery, useQueryClient } from "react-query";
-import { getPostById, updatePost } from "../../services/api";
-
+import { QueryClient, useMutation, useQuery } from "react-query";
+import { getPostById } from "../../services/api";
+import apiClient from "../../services/base";
+import database from "@faker-js/faker/dist/types/locales/en/database";
 
 const WIDTH = Dimensions.get('window').width;
 
@@ -23,55 +24,41 @@ interface Props {
 //   )
 // }
 
-
-
-
-
-const queryClient = useQueryClient();
-const getPostId = async (id: number) => {
-  getPostById(id);
-};
+const getPostId = async (id: number) => { getPostById(id) };
 const usePostId = (id: number) => useQuery([ 'post', id ], () => getPostId(id));
-// const useUpdatePost = async (id: number, newData: any) => useMutation('posts', updatePost, {
-//   onSuccess: () => {
-//     queryClient.invalidateQueries('post')
-//     console.log("Update success");
-//   },
-// });
-// const {mutate, isLoading} = useMutation(['updateKey', usePostId], () => updatePost())
-
-
-
-// @ts-ignore
+//@ts-ignore
 const UpdatePost = ({route}) => {
   const { post } = route && route.params;
+  const [putTitle, setPutTitle] = useState(post.title);
+  const [putBody, setPutBody] = useState(post.body);
+  const queryClient = new QueryClient()
   const { isSuccess, isLoading } = usePostId(post.id);
-  const [title, setTitle] = useState(post.title);
+  const { mutate: updating } = useMutation( async () => {
+      return await apiClient.put(`/${post.id}`, {
+        title: putTitle,
+        body: putBody
+      });
+    }, {
+      onMutate: (data) => {console.log({ data })},
+      onSuccess: () => {
+        // queryClient.refetchQueries()
+        console.log("Update success");
+      },
+      onError: (err) => console.log(`Error: ${err}`),
+    })
 
-  const [body, setBody] = useState(post.body);
+  const handleUpdate = () => {
+    if (post.id) {
+      try {
+        updating()
+      } catch(err) {
+        console.log(err)
+      }
 
-  const mutation = useMutation( 'post', updatePost, {
-    onMutate: async newPost => {
-      await queryClient.cancelQueries(['post', newPost.id]);
-      const previousPost = queryClient.getQueryData(['post', newPost.id]);
-      queryClient.setQueryData(['post', newPost.id], newPost);
-      return {previousPost, newPost}
-    },
-    onSuccess: (data) => {
-      queryClient.setQueryData('post', data)
-      console.log({data})
-      console.log("Update success");
-    },
-    onSettled: newPost => {
-      queryClient.invalidateQueries(['post', newPost.id])
+      console.log(`Id: ${post.id}`)
+      console.log(`Title: ${putTitle}`)
+      console.log(`Body: ${putBody}`)
     }
-  })
-
-  // const {mutate} = useUpdatePost(title, body)
-
-  const handleUpdate = (id: number, newData: any) => {
-    mutation.mutate({ id: post.id, title: post.title, body: post.body })
-    console.log(`${title}: ${body}`)
   }
   return (
     <ScrollView>
@@ -85,8 +72,8 @@ const UpdatePost = ({route}) => {
                 <TextInput
                   style={[styles.input, styles.inputTitle]}
                   multiline={true}
-                  onChangeText={(text) => (setTitle(text))}
-                  // value={title}
+                  onChangeText={(text) => (setPutTitle(text))}
+                  // value={putTitle}
                 >
 
                   {post.title}
@@ -94,10 +81,9 @@ const UpdatePost = ({route}) => {
                 <TextInput
                   style={[styles.input, styles.inputBody]}
                   multiline={true}
-                  onChangeText={(text) => (setBody(text))}
-                  // onChangeText={e => setTitle(e.target.value())}
+                  onChangeText={(text) => (setPutBody(text))}
                   numberOfLines={100}
-                  // value={body}
+                  // value={putBody}
                 >
                   {post.body}
                 </TextInput>
@@ -114,6 +100,7 @@ const UpdatePost = ({route}) => {
     </ScrollView>
   )
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -141,11 +128,9 @@ const styles = StyleSheet.create({
   },
   inputTitle: {
     height: 60,
-    // paddingTop: 20,
   },
   inputBody: {
     height: 100,
-    // paddingTop: 30,
   },
   button: {
     marginTop: 100,
