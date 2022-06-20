@@ -3,7 +3,6 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import TextScreen from "./TextScreen";
 
 export const ThemeContext = createContext();
-// console.log(ThemeContext)
 
 const WatchScreen = () => {
   const [theme, setTheme] = useState('dark');
