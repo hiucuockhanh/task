@@ -21,9 +21,13 @@ const queryClient = new QueryClient({
 
 // @ts-ignore
 const Posts = ({navigation}) => {
-  
+
   const {data, isSuccess, isLoading: loadingPosts, hasNextPage, fetchNextPage, isFetchingNextPage} =
     useInfiniteQuery('posts', getPosts, {
+      // select: data => ({
+      //   pages: [...data?.pages].reverse(),
+      //   pageParams: [...data?.pageParams].reverse(),
+      // }),
       getNextPageParam: lastPage => {
         if (lastPage.next !== null) {
           return lastPage.next;
