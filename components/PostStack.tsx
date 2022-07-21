@@ -4,7 +4,6 @@ import Posts from "./User/Posts";
 import Post from "./User/GetPostById";
 import Form from "./User/CreatePost";
 import UpdatePost from "./User/UpdatePost";
-// import ListPost from "./User/ListPost";
 
 const MainStack = createStackNavigator();
 

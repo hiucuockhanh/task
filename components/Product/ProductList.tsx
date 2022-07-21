@@ -27,7 +27,7 @@ const Lister: FunctionComponent<Props> = React.memo(
         {
           id: i,
           name: faker.company.companyName(),
-          image: faker.image.imageUrl(190, 150, 'clothing', true),
+          image: faker.image.imageUrl(190, 150, 'cat', true),
           brand: faker.name.lastName(),
           price: faker.random.numeric(3),
           isWishlist: false,

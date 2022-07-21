@@ -1,7 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import {
   SafeAreaView,
-  ScrollView,
   StyleSheet,
   View, VirtualizedList,
 } from "react-native";
@@ -9,7 +8,7 @@ import Slide from "./Slide";
 import AboutProduct from "./AboutProduct";
 import ButtonProduct from "./ButtonProduct";
 import ProductItem from "./ProductItem";
-import ListProduct from "./ListProduct";
+import ListProduct from "./ProductList";
 
 interface Props {
   name: string;
