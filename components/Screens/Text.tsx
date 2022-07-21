@@ -66,9 +66,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(249,249,249)',
   },
   productItem: {
-    backgroundColor: 'rgb(255,255,255)',
-    position: 'relative',
-    paddingBottom: 20,
   },
 });
 
