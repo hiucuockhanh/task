@@ -24,21 +24,21 @@ const Txt: FunctionComponent<Props> = () => {
   const database = [1, 2, 3, 4, 5];
 
   const getItem = (data: any, index: number) => {
-    if (index === 0) {
-      return <Slide />
-    }
-    if (index === 1) {
-      return <ProductItem />
-    }
-    if (index === 2) {
-      return <ButtonProduct />
-    }
-    if (index === 3) {
-      return <AboutProduct />
-    }
-    if (index === 4) {
-      return <ListProduct />
-    }
+    // if (index === 0) {
+    //   return <Slide />
+    // }
+    // if (index === 1) {
+    //   return <ProductItem />
+    // }
+    // if (index === 2) {
+    //   return <ButtonProduct />
+    // }
+    // if (index === 3) {
+    //   return <AboutProduct />
+    // }
+    // if (index === 4) {
+    //   return <ListProduct />
+    // }
   }
 
   return (
